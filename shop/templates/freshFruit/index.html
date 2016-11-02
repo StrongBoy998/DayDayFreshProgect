@@ -1,0 +1,217 @@
+{%extends 'freshFruit/base_index.html'%}
+
+{% load static from staticfiles %}
+
+{%block title%}天天生鲜首页{%endblock%}
+
+{%block cartnumber%}2{%endblock%}
+
+{%block content%}
+<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+	<div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+			{% for temp in sorts %}
+			<li><a href="#model0{{temp.id}}" class="{{temp.sortClass}}">{{temp.sortName}}</a></li>
+			{% endfor temp %}
+		</ul>
+
+		<div class="slide fl">
+			<ul class="slide_pics">
+				<li><img src="{% static 'images/slide.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'images/slide02.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'images/slide03.jpg' %}" alt="幻灯片"></li>
+				<li><img src="{% static 'images/slide04.jpg' %}" alt="幻灯片"></li>
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			<a href="#"><img src="{% static 'images/adv01.jpg' %}"></a>
+			<a href="#"><img src="{% static 'images/adv02.jpg' %}"></a>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s1 in sortMs1 %}
+			<h3 class="fl" id="model01">{{s1.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot1 in other1 %}
+				<!-- 其他3条商品的名字 -->
+					<a href="{% url 'index:callus' %}?sortId={{ot1.id}}">{{ot1.goodsName}}</a>
+				{% endfor ot1 %}
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s1.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s1.sortPic}}"></div>
+		{% endfor s1 %}
+			<ul class="goods_list fl">
+			{% for goosMs1 in goodsMsg1 %}
+				<li>
+					<h4><a href="{% url 'index:callus' %}?sortId={{goosMs1.id}}">{{goosMs1.goodsName}}</a></h4>
+					<a href="{% url 'index:callus' %}?sortId={{goosMs1.id}}"><img src="/static/{{goosMs1.imgPath}}"></a>
+					<div class="prize">¥ {{goosMs1.goodsPrice}}</div>
+				</li>
+			{% endfor goosMs1 %}
+			</ul>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s2 in sortMs2 %}
+			<h3 class="fl" id="model02">{{s2.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot2 in other2 %}
+					<a href="{% url 'index:callus' %}?sortId={{ot2.id}}">{{ot2.goodsName}}</a>
+				{% endfor ot2 %}		
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s2.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s2.sortPic}}"></div>
+		{% endfor s2 %}
+			<ul class="goods_list fl">
+			{% for goosMs2 in goodsMsg2 %}
+				<li>
+					<h4><a href="{% url 'index:callus' %}?sortId={{goosMs2.id}}">{{goosMs2.goodsName}}</a></h4>
+					<a href="{% url 'index:callus' %}?sortId={{goosMs2.id}}"><img src="/static/{{goosMs2.imgPath}}"></a>
+					<div class="prize">¥ {{goosMs2.goodsPrice}}</div>
+				</li>
+			{% endfor goosMs2 %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s3 in sortMs3%}
+			<h3 class="fl" id="model03">{{s3.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot3 in other3 %}
+					<a href="{% url 'index:callus' %}?sortId={{ot3.id}}">{{ot3.goodsName}}</a>
+				{% endfor ot3 %}
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s3.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s3.sortPic}}"></div>
+		{% endfor s3 %}
+			<ul class="goods_list fl">
+			{% for goosMs3 in goodsMsg3 %}
+				<li>
+					<h4><a href="{% url 'index:callus' %}?sortId={{goosMs3.id}}">{{goosMs3.goodsName}}</a></h4>
+					<a href="{% url 'index:callus' %}?sortId={{goosMs3.id}}"><img src="/static/{{goosMs3.imgPath}}"></a>
+					<div class="prize">¥ {{goosMs3.goodsPrice}}</div>
+				</li>
+			{% endfor goosMs3 %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s4 in sortMs4%}
+			<h3 class="fl" id="model04">{{s4.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot4 in other4 %}
+					<a href="{% url 'index:callus' %}?sortId={{ot4.id}}">{{ot4.goodsName}}</a>
+				{% endfor ot4 %}
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s4.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s4.sortPic}}"></div>
+		{% endfor s4 %}
+			<ul class="goods_list fl">
+					{% for goosMs4 in goodsMsg4 %}
+						<li>
+							<h4><a href="{% url 'index:callus' %}?sortId={{goosMs4.id}}">{{goosMs4.goodsName}}</a></h4>
+							<a href="{% url 'index:callus' %}?sortId={{goosMs4.id}}"><img src="/static/{{goosMs4.imgPath}}"></a>
+							<div class="prize">¥ {{goosMs4.goodsPrice}}</div>
+						</li>
+					{% endfor goosMs4 %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s5 in sortMs5 %}
+			<h3 class="fl" id="model05">{{s5.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot5 in other5 %}
+					<a href="{% url 'index:callus' %}?sortId={{ot5.id}}">{{ot5.goodsName}}</a>
+				{% endfor ot5 %}
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s5.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s5.sortPic}}"></div>
+		{% endfor s5 %}
+			<ul class="goods_list fl">
+					{% for goosMs5 in goodsMsg5 %}
+						<li>
+							<h4><a href="{% url 'index:callus' %}?sortId={{goosMs5.id}}">{{goosMs5.goodsName}}</a></h4>
+							<a href="{% url 'index:callus' %}?sortId={{goosMs5.id}}"><img src="/static/{{goosMs5.imgPath}}"></a>
+							<div class="prize">¥ {{goosMs5.goodsPrice}}</div>
+						</li>
+					{% endfor goosMs5 %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="list_model">
+		<div class="list_title clearfix">
+		{% for s6 in sortMs6%}
+			<h3 class="fl" id="model06">{{s6.sortName}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+				{% for ot6 in other6 %}
+					<a href="{% url 'index:callus' %}?sortId={{ot6.id}}">{{ot6.goodsName}}</a>
+				{% endfor ot6 %}
+			</div>
+			<a href="{% url 'goodslist:list'%}?order=id&&sort={{s6.id}}&&page={{goodslist.pindex}}" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="/static/{{s6.sortPic}}"></div>
+		{% endfor s6 %}
+			<ul class="goods_list fl">
+					{% for goosMs6 in goodsMsg6 %}
+						<li>
+							<h4><a href="{% url 'index:callus' %}?sortId={{goosMs6.id}}">{{goosMs6.goodsName}}</a></h4>
+							<a href="{% url 'index:callus' %}?sortId={{goosMs6.id}}"><img src="/static/{{goosMs6.imgPath}}"></a>
+							<div class="prize">¥ {{goosMs6.goodsPrice}}</div>
+						</li>
+					{% endfor goosMs6 %}
+			</ul>
+		</div>
+	</div>
+{%endblock%}
+{% block navlist %}
+{% endblock %}
